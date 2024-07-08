@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	inimodel "github.com/jul003/Peyeum/model"
 	cek "github.com/jul003/Peyeum/module"
-	"github.com/jul003/ws-jul2024/config"
+	"github.com/jul003/Boiler_Tb/config"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"net/http"

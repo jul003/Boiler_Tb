@@ -3,16 +3,16 @@ package main
 import (
 	"log"
 
-	"github.com/jul003/ws-jul2024/config"
+	"github.com/jul003/Boiler_Tb/config"
 
 	"github.com/aiteung/musik"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 
 
-	"github.com/jul003/ws-jul2024/url"
+	"github.com/jul003/Boiler_Tb/url"
 
 	"github.com/gofiber/fiber/v2"
-	_ "github.com/jul003/ws-jul2024/docs"
+	_ "github.com/jul003/Boiler_Tb/docs"
 
 )
 
