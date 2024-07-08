@@ -8,9 +8,8 @@ require (
 	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/gofiber/swagger v1.1.0
 	github.com/jul003/Peyeum v0.0.8
-	github.com/jul003/ws-jul2024 v0.0.0-20240614082103-248184c480bc
 	github.com/swaggo/swag v1.16.3
-	github.com/whatsauth/whatsauth v0.2.9
+	github.com/whatsauth/whatsauth v0.1.82
 	go.mau.fi/whatsmeow v0.0.0-20240706081318-bd4d4e8f74f6
 	go.mongodb.org/mongo-driver v1.16.0
 )
@@ -20,7 +19,7 @@ require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/KyleBanks/depth v1.2.1 // indirect
 	github.com/aiteung/atapi v0.0.16 // indirect
-	github.com/aiteung/atmessage v0.0.27 // indirect
+	github.com/aiteung/atmessage v0.0.1 // indirect
 	github.com/aiteung/atmodel v0.0.4 // indirect
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/fasthttp/websocket v1.5.3 // indirect
