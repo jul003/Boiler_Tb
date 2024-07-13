@@ -17,9 +17,9 @@
     "host": "ws-jul2024-bdc7cc35640a.herokuapp.com",
     "basePath": "/",
     "paths": {
-        "/delete/{id}": {
+        "/deletegadget/{id}": {
             "delete": {
-                "description": "Hapus data presensi.",
+                "description": "Hapus data gadget.",
                 "consumes": [
                     "application/json"
                 ],
@@ -27,9 +27,9 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Presensi"
+                    "Gadget"
                 ],
-                "summary": "Delete data presensi.",
+                "summary": "Delete data Gadget.",
                 "parameters": [
                     {
                         "type": "string",
@@ -52,9 +52,32 @@
                 }
             }
         },
-        "/insert": {
+        "/gadget": {
+            "get": {
+                "description": "Mengambil semua data gadget.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Gadget"
+                ],
+                "summary": "Get All Data Gadget.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Gadget"
+                        }
+                    }
+                }
+            }
+        },
+        "/insertgadget": {
             "post": {
-                "description": "Input data presensi.",
+                "description": "Input data gadget.",
                 "consumes": [
                     "application/json"
                 ],
@@ -62,9 +85,9 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Presensi"
+                    "Gadget"
                 ],
-                "summary": "Insert data presensi.",
+                "summary": "Insert data Gadget.",
                 "parameters": [
                     {
                         "description": "Payload Body [RAW]",
@@ -72,7 +95,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/controller.ReqPresensi"
+                            "$ref": "#/definitions/controller.ReqGadget"
                         }
                     }
                 ],
@@ -80,7 +103,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.Presensi"
+                            "$ref": "#/definitions/controller.Gadget"
                         }
                     },
                     "400": {
@@ -92,9 +115,9 @@
                 }
             }
         },
-        "/presensi": {
-            "get": {
-                "description": "Mengambil semua data presensi.",
+        "/insertreview": {
+            "post": {
+                "description": "Input data review.",
                 "consumes": [
                     "application/json"
                 ],
@@ -102,53 +125,29 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Presensi"
+                    "Review"
                 ],
-                "summary": "Get All Data Presensi.",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/controller.Presensi"
-                        }
-                    }
-                }
-            }
-        },
-        "/presensi/{id}": {
-            "get": {
-                "description": "Ambil per ID data presensi.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Presensi"
-                ],
-                "summary": "Get By ID Data Presensi.",
+                "summary": "Insert data Review.",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "Masukan ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
+                        "description": "Payload Body [RAW]",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.ReqReview"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.Presensi"
+                            "$ref": "#/definitions/controller.Review"
                         }
                     },
                     "400": {
                         "description": "Bad Request"
-                    },
-                    "404": {
-                        "description": "Not Found"
                     },
                     "500": {
                         "description": "Internal Server Error"
@@ -156,9 +155,32 @@
                 }
             }
         },
-        "/update/{id}": {
+        "/review": {
+            "get": {
+                "description": "Mengambil semua data review.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Review"
+                ],
+                "summary": "Get All Data Review.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Gadget"
+                        }
+                    }
+                }
+            }
+        },
+        "/updategadget/{id}": {
             "put": {
-                "description": "Ubah data presensi.",
+                "description": "Ubah data gadget.",
                 "consumes": [
                     "application/json"
                 ],
@@ -166,9 +188,9 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Presensi"
+                    "Gadget"
                 ],
-                "summary": "Update data presensi.",
+                "summary": "Update data Gadegt.",
                 "parameters": [
                     {
                         "type": "string",
@@ -183,7 +205,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/controller.ReqPresensi"
+                            "$ref": "#/definitions/controller.ReqGadget"
                         }
                     }
                 ],
@@ -191,7 +213,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.Presensi"
+                            "$ref": "#/definitions/controller.Gadget"
                         }
                     },
                     "400": {
@@ -205,192 +227,125 @@
         }
     },
     "definitions": {
-        "controller.JamKerja": {
-            "type": "object",
-            "properties": {
-                "durasi": {
-                    "type": "integer",
-                    "example": 8
-                },
-                "gmt": {
-                    "type": "integer",
-                    "example": 7
-                },
-                "hari": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "example": [
-                        "Senin",
-                        "Selasa",
-                        "Rabu",
-                        "Kamis",
-                        "Jumat",
-                        "Sabtu",
-                        "Minggu"
-                    ]
-                },
-                "jam_keluar": {
-                    "type": "string",
-                    "example": "16:00"
-                },
-                "jam_masuk": {
-                    "type": "string",
-                    "example": "08:00"
-                },
-                "piket_tim": {
-                    "type": "string",
-                    "example": "Piket Z"
-                },
-                "shift": {
-                    "type": "integer",
-                    "example": 2
-                }
-            }
-        },
-        "controller.Karyawan": {
+        "controller.Gadget": {
             "type": "object",
             "properties": {
                 "_id": {
-                    "type": "string",
-                    "example": "123456789"
+                    "type": "string"
                 },
-                "hari_kerja": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "example": [
-                        "Senin",
-                        "Selasa",
-                        "Rabu",
-                        "Kamis",
-                        "Jumat",
-                        "Sabtu",
-                        "Minggu"
-                    ]
+                "deskripsi": {
+                    "type": "string"
                 },
-                "jabatan": {
-                    "type": "string",
-                    "example": "Anonymous"
+                "harga": {
+                    "type": "number"
                 },
-                "jam_kerja": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/controller.JamKerja"
-                    }
+                "merk": {
+                    "type": "string"
                 },
                 "nama": {
-                    "type": "string",
-                    "example": "Tes Swagger"
+                    "type": "string"
                 },
-                "phone_number": {
-                    "type": "string",
-                    "example": "08123456789"
+                "spesifikasi": {
+                    "$ref": "#/definitions/controller.Spesifikasi"
                 }
             }
         },
-        "controller.Presensi": {
+        "controller.ReqGadget": {
             "type": "object",
             "properties": {
                 "_id": {
-                    "type": "string",
-                    "example": "123456789"
+                    "type": "string"
                 },
-                "biodata": {
-                    "$ref": "#/definitions/controller.Karyawan"
+                "deskripsi": {
+                    "type": "string"
                 },
-                "checkin": {
-                    "type": "string",
-                    "example": "Masuk"
+                "harga": {
+                    "type": "number"
+                },
+                "merk": {
+                    "type": "string"
+                },
+                "nama": {
+                    "type": "string"
+                },
+                "spesifikasi": {
+                    "$ref": "#/definitions/controller.Spesifikasi"
+                }
+            }
+        },
+        "controller.ReqReview": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "gadget_id": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "integer"
+                },
+                "review": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "controller.Review": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
                 },
                 "datetime": {
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2024-09-01T00:00:00Z"
+                    "description": "Use time.Time instead of primitive.DateTime",
+                    "type": "string"
                 },
-                "latitude": {
-                    "type": "number",
-                    "example": 123.12
+                "gadget_id": {
+                    "type": "string"
                 },
-                "location": {
-                    "type": "string",
-                    "example": "Bandung"
+                "rating": {
+                    "type": "integer"
                 },
-                "longitude": {
-                    "type": "number",
-                    "example": 123.11
+                "review": {
+                    "type": "string"
                 },
-                "phone_number": {
-                    "type": "string",
-                    "example": "08123456789"
+                "user_id": {
+                    "type": "string"
                 }
             }
         },
-        "controller.ReqKaryawan": {
+        "controller.Spesifikasi": {
             "type": "object",
             "properties": {
-                "hari_kerja": {
+                "baterai": {
+                    "type": "string"
+                },
+                "fitur_lainnya": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    },
-                    "example": [
-                        "Senin",
-                        "Selasa",
-                        "Rabu",
-                        "Kamis",
-                        "Jumat",
-                        "Sabtu",
-                        "Minggu"
-                    ]
-                },
-                "jabatan": {
-                    "type": "string",
-                    "example": "Anonymous"
-                },
-                "jam_kerja": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/controller.JamKerja"
                     }
                 },
-                "nama": {
-                    "type": "string",
-                    "example": "Tes Swagger"
+                "kamera": {
+                    "type": "string"
                 },
-                "phone_number": {
-                    "type": "string",
-                    "example": "08123456789"
-                }
-            }
-        },
-        "controller.ReqPresensi": {
-            "type": "object",
-            "properties": {
-                "biodata": {
-                    "$ref": "#/definitions/controller.ReqKaryawan"
+                "layar": {
+                    "type": "string"
                 },
-                "checkin": {
-                    "type": "string",
-                    "example": "Masuk"
+                "os": {
+                    "type": "string"
                 },
-                "latitude": {
-                    "type": "number",
-                    "example": 123.12
+                "prosesor": {
+                    "type": "string"
                 },
-                "location": {
-                    "type": "string",
-                    "example": "Bandung"
+                "ram": {
+                    "type": "integer"
                 },
-                "longitude": {
-                    "type": "number",
-                    "example": 123.11
-                },
-                "phone_number": {
-                    "type": "string",
-                    "example": "08123456789"
+                "storage": {
+                    "type": "integer"
                 }
             }
         }

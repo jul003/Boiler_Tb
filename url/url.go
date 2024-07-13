@@ -20,16 +20,12 @@ func Web(page *fiber.App) {
 	page.Options("/", controller.Sink)
 
 
-	page.Get("/presensi", controller.GetPresensi)
-
-	page.Get("/presensi/:id", controller.GetPresensiID) //menampilkan data presensi berdasarkan id
-
-	page.Post("/insert", controller.InsertDataPresensi)
-
-	page.Put("/update/:id", controller.UpdateData)
-
-	page.Delete("/delete/:id", controller.DeletePresensiByID)
-
+	page.Get("/gadget", controller.GetAllGagdet)
+	page.Get("/review", controller.GetAllReview) 
+	page.Post("/insertgadget", controller.InsertDataGadget)
+	page.Post("/insertreview", controller.InsertDataReview)
+	page.Put("/updategadget/:id", controller.UpdateDataGadget)
+	page.Delete("/deletegadget/:id", controller.DeleteGadgetByID)
 	page.Get("/docs/*", swagger.HandlerDefault)
 
 	

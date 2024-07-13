@@ -1,97 +1,81 @@
 package controller
 
 import (
-	"errors"
 	"fmt"
+	"net/http"
+
 	"github.com/gofiber/fiber/v2"
-	inimodel "github.com/jul003/Peyeum/model"
-	cek "github.com/jul003/Peyeum/module"
+	inimodel "github.com/jul003/BE_Tb/model"
+	cek "github.com/jul003/BE_Tb/module"
 	"github.com/jul003/Boiler_Tb/config"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
-	"net/http"
 )
-// GetPresensi godoc
-// @Summary Get All Data Presensi.
-// @Description Mengambil semua data presensi.
-// @Tags Presensi
+
+// GetAllGadget godoc
+// @Summary Get All Data Gadget.
+// @Description Mengambil semua data gadget.
+// @Tags Gadget
 // @Accept json
 // @Produce json
-// @Success 200 {object} Presensi
-// @Router /presensi [get]
-func GetPresensi(c *fiber.Ctx) error {
-	ps := cek.GetAllPresensi(config.Ulbimongoconn, "presensi")
+// @Success 200 {object} Gadget
+// @Router /gadget [get]
+func GetAllGagdet(c *fiber.Ctx) error {
+	ps := cek.GetDataGadget(config.Ulbimongoconn, "gadget2024")
 	return c.JSON(ps)
 }
-// GetPresensiID godoc
-// @Summary Get By ID Data Presensi.
-// @Description Ambil per ID data presensi.
-// @Tags Presensi
+
+// GetAllReview godoc
+// @Summary Get All Data Review.
+// @Description Mengambil semua data review.
+// @Tags Review
 // @Accept json
 // @Produce json
-// @Param id path string true "Masukan ID"
-// @Success 200 {object} Presensi
-// @Failure 400
-// @Failure 404
-// @Failure 500
-// @Router /presensi/{id} [get]
-func GetPresensiID(c *fiber.Ctx) error {
-	id := c.Params("id")
-	if id == "" {
-		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
-			"status":  http.StatusInternalServerError,
-			"message": "Wrong parameter",
-		})
-	}
-	objID, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
-			"status":  http.StatusBadRequest,
-			"message": "Invalid id parameter",
-		})
-	}
-	ps, err := cek.GetPresensiFromID(objID, config.Ulbimongoconn, "presensi")
-	if err != nil {
-		if errors.Is(err, mongo.ErrNoDocuments) {
-			return c.Status(http.StatusNotFound).JSON(fiber.Map{
-				"status":  http.StatusNotFound,
-				"message": fmt.Sprintf("No data found for id %s", id),
-			})
-		}
-		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
-			"status":  http.StatusInternalServerError,
-			"message": fmt.Sprintf("Error retrieving data for id %s", id),
-		})
-	}
+// @Success 200 {object} Gadget
+// @Router /review [get]
+func GetAllReview(c *fiber.Ctx) error {
+	ps := cek.GetDataReview(config.Ulbimongoconn, "review2024")
 	return c.JSON(ps)
 }
-// InsertDataPresensi godoc
-// @Summary Insert data presensi.
-// @Description Input data presensi.
-// @Tags Presensi
+
+// InsertDataGadget godoc
+// @Summary Insert data Gadget.
+// @Description Input data gadget.
+// @Tags Gadget
 // @Accept json
 // @Produce json
-// @Param request body ReqPresensi true "Payload Body [RAW]"
-// @Success 200 {object} Presensi
+// @Param request body ReqGadget true "Payload Body [RAW]"
+// @Success 200 {object} Gadget
 // @Failure 400
 // @Failure 500
-// @Router /insert [post]
-func InsertDataPresensi(c *fiber.Ctx) error {
+// @Router /insertgadget [post]
+func InsertDataGadget(c *fiber.Ctx) error {
 	db := config.Ulbimongoconn
-	var presensi inimodel.Presensi
-	if err := c.BodyParser(&presensi); err != nil {
+	var gadgets inimodel.Gadget
+	if err := c.BodyParser(&gadgets); err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
 			"status":  http.StatusInternalServerError,
 			"message": err.Error(),
 		})
 	}
-	insertedID, err := cek.InsertPresensi(db, "presensi",
-		presensi.Longitude,
-		presensi.Latitude,
-		presensi.Location,
-		presensi.Phone_number,
-		presensi.Checkin,
-		presensi.Biodata)
+
+	if gadgets.Nama == "" || gadgets.Merk == "" || gadgets.Harga == 0 ||
+		gadgets.Spesifikasi.Prosesor == "" || gadgets.Spesifikasi.RAM == 0 ||
+		gadgets.Spesifikasi.Storage == 0 || gadgets.Spesifikasi.Kamera == "" ||
+		gadgets.Spesifikasi.Baterai == "" || gadgets.Spesifikasi.OS == "" ||
+		gadgets.Spesifikasi.Layar == "" || len(gadgets.Spesifikasi.FiturLainnya) == 0 ||
+		gadgets.Deskripsi == "" {
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
+			"status":  http.StatusBadRequest,
+			"message": "Please fill all the required fields.",
+		})
+	}
+
+	insertedID, err := cek.InsertGadget(db, "gadget2024",
+		gadgets.Nama,
+		gadgets.Merk,
+		gadgets.Harga,
+		gadgets.Spesifikasi,
+		gadgets.Deskripsi)
 	if err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
 			"status":  http.StatusInternalServerError,
@@ -104,25 +88,66 @@ func InsertDataPresensi(c *fiber.Ctx) error {
 		"inserted_id": insertedID,
 	})
 }
-// UpdateData godoc
-// @Summary Update data presensi.
-// @Description Ubah data presensi.
-// @Tags Presensi
+
+// InsertDataReview godoc
+// @Summary Insert data Review.
+// @Description Input data review.
+// @Tags Review
+// @Accept json
+// @Produce json
+// @Param request body ReqReview true "Payload Body [RAW]"
+// @Success 200 {object} Review
+// @Failure 400
+// @Failure 500
+// @Router /insertreview [post]
+func InsertDataReview(c *fiber.Ctx) error {
+	db := config.Ulbimongoconn
+	var reviews inimodel.Review
+	if err := c.BodyParser(&reviews); err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
+			"status":  http.StatusInternalServerError,
+			"message": err.Error(),
+		})
+	}
+
+	if reviews.Rating == 0 || reviews.Review == "" {
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
+			"status":  http.StatusBadRequest,
+			"message": "Please fill all the required fields.",
+		})
+	}
+
+	insertedID, err := cek.InsertReview(db, "review2024",
+		reviews.Rating,
+		reviews.Review)
+	if err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
+			"status":  http.StatusInternalServerError,
+			"message": err.Error(),
+		})
+	}
+	return c.Status(http.StatusOK).JSON(fiber.Map{
+		"status":      http.StatusOK,
+		"message":     "Data berhasil disimpan.",
+		"inserted_id": insertedID,
+	})
+}
+
+// UpdateDataGadget godoc
+// @Summary Update data Gadegt.
+// @Description Ubah data gadget.
+// @Tags Gadget
 // @Accept json
 // @Produce json
 // @Param id path string true "Masukan ID"
-// @Param request body ReqPresensi true "Payload Body [RAW]"
-// @Success 200 {object} Presensi
+// @Param request body ReqGadget true "Payload Body [RAW]"
+// @Success 200 {object} Gadget
 // @Failure 400
 // @Failure 500
-// @Router /update/{id} [put]
-func UpdateData(c *fiber.Ctx) error {
+// @Router /updategadget/{id} [put]
+func UpdateDataGadget(c *fiber.Ctx) error {
 	db := config.Ulbimongoconn
-
-	// Get the ID from the URL parameter
 	id := c.Params("id")
-
-	// Parse the ID into an ObjectID
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
@@ -130,25 +155,21 @@ func UpdateData(c *fiber.Ctx) error {
 			"message": err.Error(),
 		})
 	}
-
-	// Parse the request body into a Presensi object
-	var presensi inimodel.Presensi
-	if err := c.BodyParser(&presensi); err != nil {
+	var gadgets inimodel.Gadget
+	if err := c.BodyParser(&gadgets); err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
 			"status":  http.StatusInternalServerError,
 			"message": err.Error(),
 		})
 	}
 
-	// Call the UpdatePresensi function with the parsed ID and the Presensi object
-	err = cek.UpdatePresensi(db, "presensi",
+	err = cek.UpdateGadget(db, "gadget2024",
 		objectID,
-		presensi.Longitude,
-		presensi.Latitude,
-		presensi.Location,
-		presensi.Phone_number,
-		presensi.Checkin,
-		presensi.Biodata)
+		gadgets.Nama,
+		gadgets.Merk,
+		gadgets.Harga,
+		gadgets.Spesifikasi,
+		gadgets.Deskripsi)
 	if err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
 			"status":  http.StatusInternalServerError,
@@ -161,18 +182,19 @@ func UpdateData(c *fiber.Ctx) error {
 		"message": "Data successfully updated",
 	})
 }
-// DeletePresensiByID godoc
-// @Summary Delete data presensi.
-// @Description Hapus data presensi.
-// @Tags Presensi
+
+// DeleteGamdgetByID godoc
+// @Summary Delete data Gadget.
+// @Description Hapus data gadget.
+// @Tags Gadget
 // @Accept json
 // @Produce json
 // @Param id path string true "Masukan ID"
 // @Success 200
 // @Failure 400
 // @Failure 500
-// @Router /delete/{id} [delete]
-func DeletePresensiByID(c *fiber.Ctx) error {
+// @Router /deletegadget/{id} [delete]
+func DeleteGadgetByID(c *fiber.Ctx) error {
 	id := c.Params("id")
 	if id == "" {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
@@ -189,7 +211,7 @@ func DeletePresensiByID(c *fiber.Ctx) error {
 		})
 	}
 
-	err = cek.DeletePresensiByID(objID, config.Ulbimongoconn, "presensi")
+	err = cek.DeleteGadgetID(objID, config.Ulbimongoconn, "gadget2024")
 	if err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
 			"status":  http.StatusInternalServerError,

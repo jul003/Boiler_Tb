@@ -15,3 +15,5 @@ func Sink(c *fiber.Ctx) error {
 	req.Body = string(c.Request().Body())
 	return c.JSON(req)
 }
+
+
