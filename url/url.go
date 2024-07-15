@@ -28,5 +28,7 @@ func Web(page *fiber.App) {
 	page.Delete("/deletegadget/:id", controller.DeleteGadgetByID)
 	page.Get("/docs/*", swagger.HandlerDefault)
 
+	page.Get("/gadget:id", controller.GetGadgetByID)
+
 	
 }
