@@ -9,6 +9,9 @@ import (
 	cek "github.com/jul003/BE_Tb/module"
 	"github.com/jul003/Boiler_Tb/config"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"errors"
+	"go.mongodb.org/mongo-driver/mongo"
+	
 )
 
 // GetAllGadget godoc
@@ -183,7 +186,7 @@ func UpdateDataGadget(c *fiber.Ctx) error {
 	})
 }
 
-// DeleteGamdgetByID godoc
+// DeleteGadgetByID godoc
 // @Summary Delete data Gadget.
 // @Description Hapus data gadget.
 // @Tags Gadget
@@ -223,4 +226,49 @@ func DeleteGadgetByID(c *fiber.Ctx) error {
 		"status":  http.StatusOK,
 		"message": fmt.Sprintf("Data with id %s deleted successfully", id),
 	})
+
+	
+}
+// GetGadgetByID godoc
+// @Summary Get By ID Data Gadgets.
+// @Description Ambil per ID data gadget.
+// @Tags Gadget
+// @Accept json
+// @Produce json
+// @Param id path string true "Masukan ID"
+// @Success 200 {object} Gadget
+// @Failure 400
+// @Failure 404
+// @Failure 500
+// @Router /gadget/{id} [get]
+
+func GetGadgetByID(c *fiber.Ctx) error {
+	id := c.Params("id")
+	if id == "" {
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
+			"status":  http.StatusInternalServerError,
+			"message": "Wrong parameter",
+		})
+	}
+	objID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
+			"status":  http.StatusBadRequest,
+			"message": "Invalid id parameter",
+		})
+	}
+	ps, err := cek.GetGadgetByID(objID, config.Ulbimongoconn, "gadget2024")
+	if err != nil {
+		if errors.Is(err, mongo.ErrNoDocuments) {
+			return c.Status(http.StatusNotFound).JSON(fiber.Map{
+				"status":  http.StatusNotFound,
+				"message": fmt.Sprintf("No data found for id %s", id),
+			})
+		}
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
+			"status":  http.StatusInternalServerError,
+			"message": fmt.Sprintf("Error retrieving data for id %s", id),
+		})
+	}
+	return c.JSON(ps)
 }

@@ -71,6 +71,8 @@ github.com/josharian/intern v1.0.0 h1:vlS4z54oSdjm0bgjRigI+G1HpF+tI+9rE5LLzOg8Hm
 github.com/josharian/intern v1.0.0/go.mod h1:5DoeVV0s6jJacbCEi61lwdGj/aVlrQvzHFFd8Hwg//Y=
 github.com/jul003/BE_Tb v0.0.2 h1:vNkZJDkJ93uj6VVmueS2WZmtOack3/oTAuV8rmVA/jw=
 github.com/jul003/BE_Tb v0.0.2/go.mod h1:esogHuvMFTtSZPxqdrHLDAzZJk5LsqyOgSmt4WcDitU=
+github.com/jul003/BE_Tb v0.0.3 h1:Jps2OsMta75eplM9OYyqbO4nfAjoAzIWdSLqOWnPHuA=
+github.com/jul003/BE_Tb v0.0.3/go.mod h1:esogHuvMFTtSZPxqdrHLDAzZJk5LsqyOgSmt4WcDitU=
 github.com/klauspost/compress v1.17.9 h1:6KIumPrER1LHsvBVuDa0r5xaG0Es51mhhB9BQB2qeMA=
 github.com/klauspost/compress v1.17.9/go.mod h1:Di0epgTjJY877eYKx5yC51cX2A2Vl2ibi7bDH9ttBbw=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
