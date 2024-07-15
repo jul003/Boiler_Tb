@@ -33,7 +33,7 @@ type Review struct {
 	GadgetID primitive.ObjectID `bson:"gadget_id,omitempty" json:"gadget_id,omitempty"`
 	Rating   int                `bson:"rating,omitempty" json:"rating,omitempty"`
 	Review   string             `bson:"review,omitempty" json:"review,omitempty"`
-	Datetime time.Time          `bson:"datetime,omitempty" json:"datetime,omitempty"` // Use time.Time instead of primitive.DateTime
+	Datetime time.Time          `bson:"datetime,omitempty" json:"datetime,omitempty"` 
 }
 
 type ReqGadget struct {
