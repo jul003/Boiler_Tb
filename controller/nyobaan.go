@@ -241,7 +241,6 @@ func DeleteGadgetByID(c *fiber.Ctx) error {
 // @Failure 404
 // @Failure 500
 // @Router /gadget/{id} [get]
-
 func GetGadgetByID(c *fiber.Ctx) error {
 	id := c.Params("id")
 	if id == "" {

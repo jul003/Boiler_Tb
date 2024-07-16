@@ -77,6 +77,47 @@ const docTemplate = `{
                 }
             }
         },
+        "/gadget/{id}": {
+            "get": {
+                "description": "Ambil per ID data gadget.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Gadget"
+                ],
+                "summary": "Get By ID Data Gadgets.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Masukan ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Gadget"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/insertgadget": {
             "post": {
                 "description": "Input data gadget.",
@@ -302,7 +343,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "datetime": {
-                    "description": "Use time.Time instead of primitive.DateTime",
                     "type": "string"
                 },
                 "gadget_id": {
@@ -322,6 +362,9 @@ const docTemplate = `{
         "controller.Spesifikasi": {
             "type": "object",
             "properties": {
+                "_id": {
+                    "type": "string"
+                },
                 "baterai": {
                     "type": "string"
                 },

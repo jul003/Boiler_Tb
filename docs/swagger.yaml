@@ -48,7 +48,6 @@ definitions:
       _id:
         type: string
       datetime:
-        description: Use time.Time instead of primitive.DateTime
         type: string
       gadget_id:
         type: string
@@ -61,6 +60,8 @@ definitions:
     type: object
   controller.Spesifikasi:
     properties:
+      _id:
+        type: string
       baterai:
         type: string
       fitur_lainnya:
@@ -126,6 +127,33 @@ paths:
           schema:
             $ref: '#/definitions/controller.Gadget'
       summary: Get All Data Gadget.
+      tags:
+      - Gadget
+  /gadget/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil per ID data gadget.
+      parameters:
+      - description: Masukan ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Gadget'
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      summary: Get By ID Data Gadgets.
       tags:
       - Gadget
   /insertgadget:
