@@ -62,10 +62,6 @@ func InsertDataGadget(c *fiber.Ctx) error {
 	}
 
 	if gadgets.Nama == "" || gadgets.Merk == "" || gadgets.Harga == 0 ||
-		gadgets.Spesifikasi.Prosesor == "" || gadgets.Spesifikasi.RAM == 0 ||
-		gadgets.Spesifikasi.Storage == 0 || gadgets.Spesifikasi.Kamera == "" ||
-		gadgets.Spesifikasi.Baterai == "" || gadgets.Spesifikasi.OS == "" ||
-		gadgets.Spesifikasi.Layar == "" || len(gadgets.Spesifikasi.FiturLainnya) == 0 ||
 		gadgets.Deskripsi == "" {
 		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
 			"status":  http.StatusBadRequest,
