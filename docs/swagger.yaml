@@ -81,7 +81,7 @@ definitions:
       storage:
         type: integer
     type: object
-host: ws-jul2024-bdc7cc35640a.herokuapp.com
+host: tb-2024-2df3fc45e2ad.herokuapp.com
 info:
   contact:
     email: indra@ulbi.ac.id

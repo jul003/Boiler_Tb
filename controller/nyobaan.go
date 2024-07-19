@@ -13,7 +13,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	
 )
-
 // GetAllGadget godoc
 // @Summary Get All Data Gadget.
 // @Description Mengambil semua data gadget.

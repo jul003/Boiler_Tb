@@ -24,7 +24,7 @@ import (
 // @contact.url https://github.com/jul003
 // @contact.email indra@ulbi.ac.id
 
-// @host  ws-jul2024-bdc7cc35640a.herokuapp.com
+// @host  tb-2024-2df3fc45e2ad.herokuapp.com
 // @BasePath /
 // @schemes https http
 
