@@ -71,7 +71,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.Review"
+                            "$ref": "#/definitions/controller.Gadget"
                         }
                     }
                 }
@@ -363,24 +363,6 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "_id": {
-                    "type": "string"
-                },
-                "baterai": {
-                    "type": "string"
-                },
-                "fitur_lainnya": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "kamera": {
-                    "type": "string"
-                },
-                "layar": {
-                    "type": "string"
-                },
-                "os": {
                     "type": "string"
                 },
                 "prosesor": {

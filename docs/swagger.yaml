@@ -62,18 +62,6 @@ definitions:
     properties:
       _id:
         type: string
-      baterai:
-        type: string
-      fitur_lainnya:
-        items:
-          type: string
-        type: array
-      kamera:
-        type: string
-      layar:
-        type: string
-      os:
-        type: string
       prosesor:
         type: string
       ram:
@@ -125,7 +113,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/controller.Review'
+            $ref: '#/definitions/controller.Gadget'
       summary: Get All Data Gadget.
       tags:
       - Gadget
