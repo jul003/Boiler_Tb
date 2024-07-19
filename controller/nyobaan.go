@@ -19,7 +19,7 @@ import (
 // @Tags Gadget
 // @Accept json
 // @Produce json
-// @Success 200 {object} Review
+// @Success 200 {object} Gadget
 // @Router /gadget [get]
 func GetAllGagdet(c *fiber.Ctx) error {
 	ps := cek.GetDataGadget(config.Ulbimongoconn, "gadget2024")
