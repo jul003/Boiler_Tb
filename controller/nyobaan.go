@@ -61,7 +61,7 @@ func InsertDataGadget(c *fiber.Ctx) error {
 	}
 
 	if gadgets.Nama == "" || gadgets.Merk == "" || gadgets.Harga == 0 ||
-		gadgets.Deskripsi == "" {
+		gadgets.Deskripsi == "" || gadgets.Spesifikasi.Prosesor == "" || gadgets.Spesifikasi.RAM == 0 || gadgets.Spesifikasi.Storage == 0 {
 		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
 			"status":  http.StatusBadRequest,
 			"message": "Please fill all the required fields.",
