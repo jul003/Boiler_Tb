@@ -71,7 +71,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controller.Gadget"
+                            "$ref": "#/definitions/controller.Review"
                         }
                     }
                 }
