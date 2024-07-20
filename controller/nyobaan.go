@@ -3,7 +3,6 @@ package controller
 import (
 	"fmt"
 	"net/http"
-
 	"github.com/gofiber/fiber/v2"
 	inimodel "github.com/jul003/BE_Tb/model"
 	cek "github.com/jul003/BE_Tb/module"

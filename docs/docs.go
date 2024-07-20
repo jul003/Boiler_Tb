@@ -274,19 +274,24 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "_id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "123456789"
                 },
                 "deskripsi": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Smartphone dengan layar Super Retina XDR 6.1 inci dan kamera ganda 12 MP."
                 },
                 "harga": {
-                    "type": "number"
+                    "type": "number",
+                    "example": 15000000
                 },
                 "merk": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Apple"
                 },
                 "nama": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "iPhone 13"
                 },
                 "spesifikasi": {
                     "$ref": "#/definitions/controller.Spesifikasi"
@@ -296,43 +301,62 @@ const docTemplate = `{
         "controller.ReqGadget": {
             "type": "object",
             "properties": {
-                "_id": {
-                    "type": "string"
-                },
                 "deskripsi": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Smartphone dengan layar Super Retina XDR 6.1 inci dan kamera ganda 12 MP."
                 },
                 "harga": {
-                    "type": "number"
+                    "type": "number",
+                    "example": 15000000
                 },
                 "merk": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Apple"
                 },
                 "nama": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "iPhone 13"
                 },
                 "spesifikasi": {
-                    "$ref": "#/definitions/controller.Spesifikasi"
+                    "$ref": "#/definitions/controller.ReqSpesifikasi"
                 }
             }
         },
         "controller.ReqReview": {
             "type": "object",
             "properties": {
-                "_id": {
-                    "type": "string"
-                },
                 "gadget_id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "3344556677"
                 },
                 "rating": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 5
                 },
                 "review": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Luar biasa! Kinerja cepat dan kamera sangat bagus."
                 },
                 "user_id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2233445566"
+                }
+            }
+        },
+        "controller.ReqSpesifikasi": {
+            "type": "object",
+            "properties": {
+                "prosesor": {
+                    "type": "string",
+                    "example": "A15 Bionic"
+                },
+                "ram": {
+                    "type": "integer",
+                    "example": 6
+                },
+                "storage": {
+                    "type": "integer",
+                    "example": 128
                 }
             }
         },
@@ -340,22 +364,29 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "_id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "1122334455"
                 },
                 "datetime": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2024-07-20T00:00:00Z"
                 },
                 "gadget_id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "3344556677"
                 },
                 "rating": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 5
                 },
                 "review": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Luar biasa! Kinerja cepat dan kamera sangat bagus."
                 },
                 "user_id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2233445566"
                 }
             }
         },
@@ -363,16 +394,20 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "_id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "987654321"
                 },
                 "prosesor": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "A15 Bionic"
                 },
                 "ram": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 6
                 },
                 "storage": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 128
                 }
             }
         }

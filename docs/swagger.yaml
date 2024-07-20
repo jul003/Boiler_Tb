@@ -3,70 +3,104 @@ definitions:
   controller.Gadget:
     properties:
       _id:
+        example: "123456789"
         type: string
       deskripsi:
+        example: Smartphone dengan layar Super Retina XDR 6.1 inci dan kamera ganda
+          12 MP.
         type: string
       harga:
+        example: 15000000
         type: number
       merk:
+        example: Apple
         type: string
       nama:
+        example: iPhone 13
         type: string
       spesifikasi:
         $ref: '#/definitions/controller.Spesifikasi'
     type: object
   controller.ReqGadget:
     properties:
-      _id:
-        type: string
       deskripsi:
+        example: Smartphone dengan layar Super Retina XDR 6.1 inci dan kamera ganda
+          12 MP.
         type: string
       harga:
+        example: 15000000
         type: number
       merk:
+        example: Apple
         type: string
       nama:
+        example: iPhone 13
         type: string
       spesifikasi:
-        $ref: '#/definitions/controller.Spesifikasi'
+        $ref: '#/definitions/controller.ReqSpesifikasi'
     type: object
   controller.ReqReview:
     properties:
-      _id:
-        type: string
       gadget_id:
+        example: "3344556677"
         type: string
       rating:
+        example: 5
         type: integer
       review:
+        example: Luar biasa! Kinerja cepat dan kamera sangat bagus.
         type: string
       user_id:
+        example: "2233445566"
         type: string
+    type: object
+  controller.ReqSpesifikasi:
+    properties:
+      prosesor:
+        example: A15 Bionic
+        type: string
+      ram:
+        example: 6
+        type: integer
+      storage:
+        example: 128
+        type: integer
     type: object
   controller.Review:
     properties:
       _id:
+        example: "1122334455"
         type: string
       datetime:
+        example: "2024-07-20T00:00:00Z"
+        format: date-time
         type: string
       gadget_id:
+        example: "3344556677"
         type: string
       rating:
+        example: 5
         type: integer
       review:
+        example: Luar biasa! Kinerja cepat dan kamera sangat bagus.
         type: string
       user_id:
+        example: "2233445566"
         type: string
     type: object
   controller.Spesifikasi:
     properties:
       _id:
+        example: "987654321"
         type: string
       prosesor:
+        example: A15 Bionic
         type: string
       ram:
+        example: 6
         type: integer
       storage:
+        example: 128
         type: integer
     type: object
 host: tb-2024-2df3fc45e2ad.herokuapp.com
