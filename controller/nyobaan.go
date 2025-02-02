@@ -7,6 +7,7 @@ import (
 	inimodel "github.com/jul003/BE_Tb/model"
 	cek "github.com/jul003/BE_Tb/module"
 	"github.com/jul003/Boiler_Tb/config"
+	"github.com/microcosm-cc/bluemonday"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"errors"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -49,6 +50,12 @@ func GetAllReview(c *fiber.Ctx) error {
 // @Failure 400
 // @Failure 500
 // @Router /insertgadget [post]
+func sanitizeInput(input string) string {
+	// Gunakan bluemonday untuk membersihkan HTML dari input pengguna
+	p := bluemonday.UGCPolicy() // UGC = User Generated Content
+	return p.Sanitize(input) // Sanitasi input untuk mencegah XSS
+}
+
 func InsertDataGadget(c *fiber.Ctx) error {
 	db := config.Ulbimongoconn
 	var gadgets inimodel.Gadget
@@ -59,6 +66,7 @@ func InsertDataGadget(c *fiber.Ctx) error {
 		})
 	}
 
+	// Validasi input
 	if gadgets.Nama == "" || gadgets.Merk == "" || gadgets.Harga == 0 ||
 		gadgets.Deskripsi == "" || gadgets.Spesifikasi.Prosesor == "" || gadgets.Spesifikasi.RAM == 0 || gadgets.Spesifikasi.Storage == 0 {
 		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
@@ -67,6 +75,13 @@ func InsertDataGadget(c *fiber.Ctx) error {
 		})
 	}
 
+	// Sanitasi input pengguna untuk mencegah XSS
+	gadgets.Nama = sanitizeInput(gadgets.Nama)
+	gadgets.Merk = sanitizeInput(gadgets.Merk)
+	gadgets.Deskripsi = sanitizeInput(gadgets.Deskripsi)
+	gadgets.Spesifikasi.Prosesor = sanitizeInput(gadgets.Spesifikasi.Prosesor)
+
+	// Proses penyimpanan gadget ke database
 	insertedID, err := cek.InsertGadget(db, "gadget2024",
 		gadgets.Nama,
 		gadgets.Merk,

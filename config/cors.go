@@ -19,14 +19,15 @@ var origins = []string{
 	"https://jul003.github.io",
 	"http://127.0.0.1:5501",
 	"http://127.0.0.1:5500",
+	"http://127.0.0.1:8080",
 }
 
 var Internalhost string = os.Getenv("INTERNALHOST") + ":" + os.Getenv("PORT")
 
 var Cors = cors.Config{
 	AllowOrigins:     strings.Join(origins[:], ","),
-	AllowMethods:     "GET,HEAD,OPTIONS,POST,PUT,DELETE",
-	AllowHeaders:     "Origin,Login, Content-Type",
-	ExposeHeaders:    "Content-Length",
-	AllowCredentials: true,
+    AllowMethods:     "GET,HEAD,OPTIONS,POST,PUT,DELETE",
+    AllowHeaders:     "Origin,Login,Content-Type,csrf-token,Authorization",
+    ExposeHeaders:    "Content-Length,csrf-token",
+    AllowCredentials: true,
 }
