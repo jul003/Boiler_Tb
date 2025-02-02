@@ -7,7 +7,7 @@ require (
 	github.com/aiteung/musik v0.0.5
 	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/gofiber/swagger v1.1.0
-	github.com/jul003/BE_Tb v0.0.7
+	github.com/jul003/BE_Tb v0.0.8
 	github.com/swaggo/swag v1.16.3
 	github.com/whatsauth/whatsauth v0.1.82
 	go.mau.fi/whatsmeow v0.0.0-20240706081318-bd4d4e8f74f6
@@ -31,6 +31,8 @@ require (
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect
+	github.com/gorilla/mux v1.8.1 // indirect
+	github.com/gorilla/securecookie v1.1.2 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/klauspost/compress v1.17.9 // indirect
@@ -41,6 +43,7 @@ require (
 	github.com/microsoft/go-mssqldb v1.0.0 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
+	github.com/rs/cors v1.11.1 // indirect
 	github.com/rs/zerolog v1.33.0 // indirect
 	github.com/savsgio/gotils v0.0.0-20230208104028-c358bd845dee // indirect
 	github.com/swaggo/files/v2 v2.0.0 // indirect
